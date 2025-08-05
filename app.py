@@ -116,4 +116,15 @@ if url:
             st.warning("No se pudo verificar robots.txt")
 
         try:
-            sitemap_url = urljoi_
+            sitemap_url = urljoin(base_url, "/sitemap.xml")
+            sitemap = requests.get(sitemap_url, headers=HEADERS, timeout=5)
+            if sitemap.status_code == 200:
+                st.success("Archivo sitemap.xml encontrado:")
+                st.code(sitemap.text[:500] + ('...' if len(sitemap.text) > 500 else ''))
+            else:
+                st.warning("No se encontró archivo sitemap.xml")
+        except:
+            st.warning("No se pudo verificar sitemap.xml")
+
+    except RequestException as e:
+        st.error(f"No se pudo acceder a la URL. Error: {e}")
