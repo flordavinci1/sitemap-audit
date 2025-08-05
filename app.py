@@ -4,6 +4,15 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 from requests.exceptions import RequestException
 
+# Definimos un header común para simular navegador
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/114.0.0.0 Safari/537.36"
+    )
+}
+
 st.set_page_config(page_title="Herramienta de Auditoría SEO para una Página", layout="centered")
 st.title("🔎 Herramienta de Auditoría SEO para una Página")
 
@@ -16,7 +25,7 @@ url = st.text_input("1. Ingresá la URL que querés auditar:", placeholder="http
 
 if url:
     try:
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, headers=HEADERS, timeout=10)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -53,7 +62,7 @@ if url:
         broken_links = []
         for link, anchor in internal_links[:20]:
             try:
-                r = requests.head(link, allow_redirects=True, timeout=5)
+                r = requests.head(link, headers=HEADERS, allow_redirects=True, timeout=5)
                 status = r.status_code
                 if status >= 400:
                     broken_links.append(link)
@@ -74,20 +83,18 @@ if url:
         images = soup.find_all("img")
         if images:
             missing_alt = [img.get('src', '') for img in images if not img.get('alt')]
-            broken_images = []
             st.markdown(f"Se encontraron {len(images)} imágenes (mostrando hasta 20):")
             for img in images[:20]:
                 src = img.get('src', '')
                 alt = img.get('alt', '')
                 st.markdown(f"- {'⚠️' if not alt else '✅'} `{src}` - alt: '{alt}'")
-                # Podrías agregar chequeo de imágenes rotas (opcional)
         else:
             st.write("No se encontraron imágenes.")
 
         # 5. Accesibilidad básica
         st.subheader("♿ Evaluación básica de accesibilidad")
         try:
-            r = requests.get(url, timeout=10)
+            r = requests.get(url, headers=HEADERS, timeout=10)
             if r.status_code == 200:
                 st.success("La página es accesible (status 200).")
             else:
@@ -99,7 +106,7 @@ if url:
         st.subheader("🕷️ Crawlabilidad básica")
         try:
             robots_url = urljoin(base_url, "/robots.txt")
-            robots = requests.get(robots_url, timeout=5)
+            robots = requests.get(robots_url, headers=HEADERS, timeout=5)
             if robots.status_code == 200:
                 st.success("Archivo robots.txt encontrado:")
                 st.code(robots.text[:500] + ('...' if len(robots.text) > 500 else ''))
@@ -109,18 +116,4 @@ if url:
             st.warning("No se pudo verificar robots.txt")
 
         try:
-            sitemap_url = urljoin(base_url, "/sitemap.xml")
-            sitemap = requests.get(sitemap_url, timeout=5)
-            if sitemap.status_code == 200:
-                st.success("Archivo sitemap.xml encontrado:")
-                st.code(sitemap.text[:500] + ('...' if len(sitemap.text) > 500 else ''))
-            else:
-                st.warning("No se encontró archivo sitemap.xml")
-        except:
-            st.warning("No se pudo verificar sitemap.xml")
-
-    except RequestException as e:
-        st.error(f"No se pudo acceder a la URL. Error: {e}")
-
-
-
+            sitemap_url = urljoi_
