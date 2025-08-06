@@ -134,8 +134,8 @@ st.markdown("---")
 st.markdown(
     """
     <div style="text-align: center;">
-        <p>💡 Esta herramienta fue creada con fines educativos.</p>
-        <p>📬 ¿Querés charlar sobre SEO, educación digital o IA aplicada?</p>
+        <p>💡 Esta herramienta fue creada con fines educativos por Flor Estévez.</p>
+        <p>📬 ¿Querés charlar sobre SEO, comunicación digital o IA aplicada?</p>
         <a href="https://www.linkedin.com/in/festevez30005/" target="_blank" style="font-weight: bold; color: #4B8BBE;">Conectá conmigo en LinkedIn</a>
     </div>
     """,
