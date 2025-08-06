@@ -134,9 +134,15 @@ st.markdown("---")
 st.markdown(
     """
     <div style="text-align: center;">
-        <p>💡 Esta herramienta fue creada con fines educativos por Flor Estévez.</p>
-        <p>📬 ¿Querés charlar sobre SEO, comunicación digital o IA aplicada?</p>
-        <a href="https://www.linkedin.com/in/festevez30005/" target="_blank" style="font-weight: bold; color: #4B8BBE;">Conectá conmigo en LinkedIn</a>
+        <p>✨ Esta herramienta fue creada con fines educativos y de asistencia a profesionales que están comenzando en SEO.</p>
+        <p>💌 Si te sirvió o tenés sugerencias, podés escribirme a <a href="mailto:florencia@crawla.com.ar">florencia@crawla.agency</a></p>
+        <p>📬 También podés encontrarme en <a href="https://www.linkedin.com/in/festevez3005/" target="_blank"><strong>LinkedIn</strong></a></p>
+        <br>
+        <a href="https://www.linkedin.com/in/florenciaestevez/" target="_blank">
+            <button style="background-color:#4B8BBE; color:white; padding:10px 20px; font-size:16px; border:none; border-radius:6px; cursor:pointer;">
+                🌐 Conectá conmigo en LinkedIn
+            </button>
+        </a>
     </div>
     """,
     unsafe_allow_html=True
