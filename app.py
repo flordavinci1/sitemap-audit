@@ -128,3 +128,16 @@ if url:
 
     except RequestException as e:
         st.error(f"No se pudo acceder a la URL. Error: {e}")
+
+# CTA final
+st.markdown("---")
+st.markdown(
+    """
+    <div style="text-align: center;">
+        <p>💡 Esta herramienta fue creada con fines educativos.</p>
+        <p>📬 ¿Querés charlar sobre SEO, educación digital o IA aplicada?</p>
+        <a href="https://www.linkedin.com/in/festevez30005/" target="_blank" style="font-weight: bold; color: #4B8BBE;">Conectá conmigo en LinkedIn</a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
